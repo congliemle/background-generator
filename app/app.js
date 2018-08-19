@@ -8,28 +8,19 @@ function randomHexColor() {
 	return `#${(Math.random().toString(16) + "000000").slice(2, 8)}`;
 }
 
-// function setGradient() {
-//     body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
-// 	css.textContent = `${body.style.background}`;
-// }
-
-function randomGradient(event) {
-    if (event.type === "input") {
-        body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
-        css.textContent = `${body.style.background}`;
-    } else {
-        color1.setAttribute("value", randomHexColor());
-        color2.setAttribute("value", randomHexColor());
-        console.log(color1);
-        console.log(color2);
-        body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
-        console.log(body.style.background);
-        css.textContent = `${body.style.background}`;
-    }  
+function setGradient() {
+    body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
+	css.textContent = `${body.style.background}`;
 }
 
-color1.addEventListener("input", randomGradient);
+function randomGradient() {
+    color1.value = randomHexColor();
+    color2.value = randomHexColor();
+    setGradient();
+}
 
-color2.addEventListener("input", randomGradient);
+color1.addEventListener("input", setGradient);
+
+color2.addEventListener("input", setGradient);
 
 randomButton.addEventListener("click", randomGradient);
